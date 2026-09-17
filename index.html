@@ -1,18 +1,416 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Texas Medical Assistant Society at The University of Texas at Austin."
+  />
+  <title>Texas Medical Assistant Society | UT Austin</title>
 
-    <title>My Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  />
 
-    <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-    <h1>Hello World!</h1>
+  <!-- Navigation -->
+  <header class="site-header">
+    <nav class="navbar container">
+      <a href="#home" class="brand">
+        <span class="brand-mark">TMAS</span>
+        <span class="brand-text">
+          <strong>Texas Medical Assistant Society</strong>
+          <small>University of Texas at Austin</small>
+        </span>
+      </a>
 
-    <script src="js/script.js"></script>
+      <button class="menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#opportunities">Opportunities</a>
+        <a href="#resources">Resources</a>
+        <a href="#involved">Get Involved</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-glow"></div>
+
+      <div class="container hero-content">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span></span>
+            UT Austin Student Organization
+          </div>
+
+          <h1>
+            Learn.
+            <em>Serve.</em>
+            Lead.
+          </h1>
+
+          <p class="hero-description">
+            Texas Medical Assistant Society brings students together around
+            clinical education, service, leadership, and professional
+            development in healthcare.
+          </p>
+
+          <div class="hero-buttons">
+            <a
+              href="https://sites.utexas.edu/tmas/"
+              target="_blank"
+              rel="noopener"
+              class="button button-primary"
+            >
+              Explore TMAS
+              <span>↗</span>
+            </a>
+
+            <a href="#about" class="button button-secondary">
+              Learn more
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="cross-icon">+</div>
+
+          <div class="hero-card-content">
+            <span>Texas Medical Assistant Society</span>
+            <h2>Healthcare starts with people.</h2>
+            <p>
+              Connect with fellow students, develop your skills, and explore
+              opportunities in medical assisting and healthcare.
+            </p>
+          </div>
+
+          <div class="hero-card-line"></div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span></span>
+        Scroll to explore
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section about" id="about">
+      <div class="container two-column">
+
+        <div class="section-label">
+          <span>01</span>
+          <p>About TMAS</p>
+        </div>
+
+        <div class="section-content">
+          <h2>
+            A student community
+            <span>for healthcare.</span>
+          </h2>
+
+          <p class="large-text">
+            The Texas Medical Assistant Society at The University of Texas at
+            Austin is a student-led organization centered around education,
+            service, leadership, and professional development.
+          </p>
+
+          <p>
+            TMAS provides students with opportunities to explore medical
+            assisting and healthcare, connect with their peers, and build
+            experiences that complement their academic journey.
+          </p>
+
+          <div class="stat-row">
+            <div>
+              <strong>Education</strong>
+              <span>Clinical learning</span>
+            </div>
+
+            <div>
+              <strong>Service</strong>
+              <span>Community involvement</span>
+            </div>
+
+            <div>
+              <strong>Leadership</strong>
+              <span>Professional growth</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Opportunities -->
+    <section class="section opportunities" id="opportunities">
+      <div class="container">
+
+        <div class="section-heading centered">
+          <div class="section-label centered-label">
+            <span>02</span>
+            <p>What TMAS offers</p>
+          </div>
+
+          <h2>
+            More than a club.
+            <span>An opportunity.</span>
+          </h2>
+
+          <p>
+            Get involved in areas that help you learn about healthcare,
+            contribute to your community, and grow professionally.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="feature-card">
+            <div class="card-number">01</div>
+            <div class="card-icon">✚</div>
+            <h3>Clinical Education</h3>
+            <p>
+              Explore healthcare and medical assisting through educational
+              experiences and opportunities to expand your knowledge.
+            </p>
+            <a href="#resources">Explore resources →</a>
+          </article>
+
+          <article class="feature-card featured">
+            <div class="card-number">02</div>
+            <div class="card-icon">♡</div>
+            <h3>Service</h3>
+            <p>
+              Find ways to engage with your community and develop a
+              service-oriented approach to healthcare.
+            </p>
+            <a href="#involved">Get involved →</a>
+          </article>
+
+          <article class="feature-card">
+            <div class="card-number">03</div>
+            <div class="card-icon">↗</div>
+            <h3>Leadership & Growth</h3>
+            <p>
+              Build relationships, develop leadership skills, and pursue
+              professional development alongside fellow students.
+            </p>
+            <a href="#involved">Learn more →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section class="section resources" id="resources">
+      <div class="container resource-layout">
+
+        <div class="resource-intro">
+          <div class="section-label">
+            <span>03</span>
+            <p>Resources</p>
+          </div>
+
+          <h2>
+            Everything you need,
+            <span>in one place.</span>
+          </h2>
+
+          <p>
+            Visit TMAS's existing online resources for organization
+            information, opportunities, and ways to connect.
+          </p>
+        </div>
+
+        <div class="resource-list">
+
+          <a
+            class="resource-item"
+            href="https://sites.utexas.edu/tmas/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div>
+              <span class="resource-tag">OFFICIAL SITE</span>
+              <h3>TMAS Website</h3>
+              <p>Visit the official TMAS page at UT Austin.</p>
+            </div>
+            <span class="resource-arrow">↗</span>
+          </a>
+
+          <a
+            class="resource-item"
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div>
+              <span class="resource-tag">SOCIAL</span>
+              <h3>Instagram</h3>
+              <p>Follow TMAS for organization updates and announcements.</p>
+            </div>
+            <span class="resource-arrow">↗</span>
+          </a>
+
+          <a
+            class="resource-item"
+            href="https://sites.utexas.edu/tmas/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div>
+              <span class="resource-tag">JOIN</span>
+              <h3>Membership Application</h3>
+              <p>Find the current application through the official TMAS resources.</p>
+            </div>
+            <span class="resource-arrow">↗</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="involved">
+      <div class="container cta-inner">
+
+        <div class="cta-decoration">
+          <span>+</span>
+          <span>+</span>
+          <span>+</span>
+        </div>
+
+        <div>
+          <div class="eyebrow light">
+            <span></span>
+            Get involved
+          </div>
+
+          <h2>
+            Your healthcare
+            <em>journey</em> starts here.
+          </h2>
+
+          <p>
+            Connect with TMAS and discover opportunities to learn, serve,
+            and grow at UT Austin.
+          </p>
+        </div>
+
+        <a
+          href="https://sites.utexas.edu/tmas/"
+          target="_blank"
+          rel="noopener"
+          class="button button-light"
+        >
+          Visit TMAS
+          <span>↗</span>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact" id="contact">
+      <div class="container contact-grid">
+
+        <div>
+          <div class="section-label">
+            <span>04</span>
+            <p>Stay connected</p>
+          </div>
+
+          <h2>
+            Keep up with
+            <span>TMAS.</span>
+          </h2>
+
+          <p>
+            For current organization information, applications, meetings,
+            and announcements, use TMAS's official online channels.
+          </p>
+        </div>
+
+        <div class="contact-links">
+
+          <a
+            href="https://sites.utexas.edu/tmas/"
+            target="_blank"
+            rel="noopener"
+            class="contact-link"
+          >
+            <span class="contact-icon">↗</span>
+            <div>
+              <small>OFFICIAL WEBSITE</small>
+              <strong>sites.utexas.edu/tmas</strong>
+            </div>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener"
+            class="contact-link"
+          >
+            <span class="contact-icon">◎</span>
+            <div>
+              <small>INSTAGRAM</small>
+              <strong>Follow TMAS</strong>
+            </div>
+          </a>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <span class="brand-mark">TMAS</span>
+        <div>
+          <strong>Texas Medical Assistant Society</strong>
+          <span>The University of Texas at Austin</span>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <span>Student organization</span>
+        <span>•</span>
+        <span>Austin, Texas</span>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> Texas Medical Assistant Society</span>
+      <a href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
