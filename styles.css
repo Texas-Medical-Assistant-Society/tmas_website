@@ -35,12 +35,13 @@
     text-decoration: none;          /* Removes the underline */
     font-size: 1rem;
     font-weight: 500;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     transition: color 0.3s ease;    /* Smooth hover effect transition */
 }
 
 /* Hover effects for link interactivity */
 .nav-links a:hover {
-    color: #04AA6D;                 /* Changes color when mouse hovers over */
+    color: #77c0e0;                 /* Changes color when mouse hovers over */
 }
 
 /* Heading 1 Font and Stuff */
@@ -57,7 +58,7 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     height: 21px;
-    width: 30px;
+    width: 30px; 
 }
 
 /* Three lines for hamburger */
@@ -67,9 +68,43 @@ h1 {
     width: 100%;
     background-color: #ffffff;
     border-radius: 2px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
+.hero-section {
+    /* Set the background image path */
+    background-image: url('/images/hero.JPG');
+    
+    /* Center the image and make it scale proportionally */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Control the height of your hero section */
+    height: 60vh; /* Takes up 80% or 60% of the viewport height depending on desktop or mobile */
+    
+    /* Flexbox layout to center the text blocks inside the hero */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    /* Padding to ensure content never touches the edges on mobile */
+    padding: 0 20px;
+}
+
+#hero-text {
+    padding-top: 20rem;
+    color: #fff;
+    text-shadow: 2 2 2 #303033;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
 @media (max-width: 768px) {
+    .navbar {
+        position: relative;
+    }
     .nav-links {
         display: none;
     }
@@ -81,8 +116,19 @@ h1 {
     .nav-links.active {
         display: flex !important;
         flex-direction: column;
-        list-style: circle;               /* Removes bullet points */
         gap: 20px;                      /* Adds space between each link */
+
+        /* Dropdown Position */
+        position: absolute;
+        top: 100%;       /* Positions it exactly below the navbar bottom edge */
+        left: 0;
+        width: 100%;     /* Spans the full width of the viewport */
+        background-color: #303033; /* Matches your dark navbar background */
+        padding: 2rem 2rem 2rem 3.5rem ;   /* Gives the vertical links breathing room */
+        z-index: 100;    /* Forces it to sit on top of any page content below it */
+        
+        text-align: left; /* Centers the links (optional, remove for left-aligned) */
+
 }
 }
 
@@ -90,18 +136,18 @@ h1 {
 
 /* Top line: rotates 45 degrees downward and moves into place */
 .hamburger.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+  transform: translateY(9.5px) rotate(45deg);
 }
 
 /* Middle line: vanishes */
 .hamburger.open span:nth-child(2) {
   opacity: 0;
-  transform: translateX(-10px); /* Optional: slides it out to the left */
+  transform: translateX(0px); /* Optional: slides it out to the left */
 }
 
 /* Bottom line: rotates 45 degrees upward and moves into place */
 .hamburger.open span:nth-child(3) {
-  transform: translateY(-11px) rotate(-45deg);
+  transform: translateY(-9.5px) rotate(-45deg);
 }
 
 
