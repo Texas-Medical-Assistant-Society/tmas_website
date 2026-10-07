@@ -81,7 +81,7 @@ h1 {
     background-repeat: no-repeat;
     
     /* Control the height of your hero section */
-    height: 60vh; /* Takes up 80% or 60% of the viewport height depending on desktop or mobile */
+    height: 90vh; /* Takes up 80% or 60% of the viewport height depending on desktop or mobile */
     
     /* Flexbox layout to center the text blocks inside the hero */
     display: flex;
@@ -112,6 +112,11 @@ h1 {
     .hamburger {
         display: flex; /* Shows 3-line icon */
     }
+
+    .hero-section {
+        height: 60vh;
+    }
+
      /* Class to toggle visibility via JavaScript when clicked */
     .nav-links.active {
         display: flex !important;
