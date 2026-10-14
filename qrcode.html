@@ -3,124 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple QR Code Generator</title>
-    <!-- Verified Cloudflare CDN Script with Subresource Integrity (SRI) -->
-    <script src="https://cloudflare.com" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4w8782OPTOFQ6wz36LN5cspNDLIUsEhpFlFuwAxil8vqn5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            width: 320px;
-        }
-        input {
-            width: 90%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 5px;
-            box-sizing: border-box;
-        }
-        .counter {
-            font-size: 12px;
-            color: #666;
-            text-align: right;
-            margin-bottom: 20px;
-            padding-right: 15px;
-        }
-        #qrcode {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            min-height: 200px;
-        }
-        /* Custom styling for the download button */
-        .btn-download {
-            display: none; /* Hidden by default until text is entered */
-            width: 100%;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-        .btn-download:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>QR Code Generator</title>
 </head>
 <body>
+    <h1>QR Code Generator</h1>
 
-<div class="container">
-    <h2>QR Code Generator</h2>
-    <!-- Added maxlength attribute to hard-limit input data length -->
-    <input type="text" id="text-input" placeholder="Type text or paste URL here..." maxlength="400" oninput="generateQR()">
-    <div class="counter" id="char-counter">0 / 400 characters</div>
-    
+    <label for="qrText">Enter text or URL:</label>
+    <input type="text" id="qrText" placeholder="https://example.com">
+
+    <button onclick="generateQR()">Generate QR Code</button>
+
+    <p id="message"></p>
+
     <div id="qrcode"></div>
-    
-    <!-- Action button to download the finalized image asset -->
-    <button id="download-btn" class="btn-download" onclick="downloadQR()">Download QR Code</button>
-</div>
 
-<script>
-    const qrcode = new QRCode(document.getElementById("qrcode"), {
-        width: 200,
-        height: 200,
-        correctLevel: QRCode.CorrectLevel.H // High error correction capability
-    });
+    <button onclick="downloadQR()">Download QR Code</button>
 
-    function generateQR() {
-        const inputField = document.getElementById("text-input");
-        const counter = document.getElementById("char-counter");
-        const downloadBtn = document.getElementById("download-btn");
-        const inputData = inputField.value;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
-        // Dynamic visual validation tracking character metrics
-        counter.innerText = `${inputData.length} / 400 characters`;
+    <script>
+        let qr;
 
-        if (inputData.trim() === "") {
-            qrcode.clear(); 
-            downloadBtn.style.display = "none"; // Hide button if no text exists
-        } else {
-            qrcode.makeCode(inputData); 
-            downloadBtn.style.display = "block"; // Reveal download button safely
+        function generateQR() {
+            const text = document.getElementById("qrText").value.trim();
+            const container = document.getElementById("qrcode");
+            const message = document.getElementById("message");
+
+            container.innerHTML = "";
+            message.textContent = "";
+
+            if (!text) {
+                message.textContent = "Please enter some text or a URL.";
+                return;
+            }
+
+            if (typeof QRCode === "undefined") {
+                message.textContent =
+                    "QR library failed to load. Check your internet connection.";
+                return;
+            }
+
+            qr = new QRCode(container, {
+                text: text,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            message.textContent = "QR code generated successfully!";
         }
-    }
 
-    function downloadQR() {
-        // Find the image element generated inside the #qrcode container
-        const qrImage = document.querySelector("#qrcode img");
-        
-        if (qrImage) {
-            const downloadLink = document.createElement("a");
-            downloadLink.href = qrImage.src;
-            downloadLink.download = "qrcode.png"; // Saves direct to desktop/downloads file pathway
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
-            document.body.removeChild(downloadLink);
-        } else {
-            alert("Please wait for the QR code to finish rendering before downloading.");
+        function downloadQR() {
+            const container = document.getElementById("qrcode");
+            const canvas = container.querySelector("canvas");
+            const image = container.querySelector("img");
+
+            if (canvas) {
+                saveImage(canvas.toDataURL("image/png"));
+            } else if (image && image.src) {
+                saveImage(image.src);
+            } else {
+                document.getElementById("message").textContent =
+                    "Generate a QR code first.";
+            }
         }
-    }
-</script>
 
+        function saveImage(dataURL) {
+            const link = document.createElement("a");
+            link.href = dataURL;
+            link.download = "qrcode.png";
+            link.click();
+        }
+    </script>
 </body>
 </html>
