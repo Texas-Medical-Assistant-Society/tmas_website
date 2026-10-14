@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple QR Code Generator</title>
+    <!-- Load the QR Code library -->
+    <script src="https://cloudflare.com"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>QR Code Generator</h2>
+    <input type="text" id="text-input" placeholder="Type text or paste URL here..." oninput="generateQR()">
+    <div id="qrcode"></div>
+</div>
+
+<script>
+    // Initialize the QR Code generator attached to the 'qrcode' div
+    const qrcode = new QRCode(document.getElementById("qrcode"), {
+        width: 200,
+        height: 200
+    });
+
+    function generateQR() {
+        const inputData = document.getElementById("text-input").value;
+        
+        if (inputData.trim() === "") {
+            qrcode.clear(); // Clear the QR code if input is empty
+        } else {
+            qrcode.makeCode(inputData); // Generate new QR code instantly
+        }
+    }
+</script>
+
+</body>
+</html>
