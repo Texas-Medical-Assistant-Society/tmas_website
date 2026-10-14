@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple QR Code Generator</title>
-    <!-- Load the QR Code library -->
-    <script src="https://cloudflare.com"></script>
+    <!-- Verified Cloudflare CDN Script with Subresource Integrity (SRI) -->
+    <script src="https://cloudflare.com" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4w8782OPTOFQ6wz36LN5cspNDLIUsEhpFlFuwAxil8vqn5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,19 +23,46 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 320px;
         }
         input {
-            width: 80%;
+            width: 90%;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            margin-bottom: 5px;
+            box-sizing: border-box;
+        }
+        .counter {
+            font-size: 12px;
+            color: #666;
+            text-align: right;
             margin-bottom: 20px;
+            padding-right: 15px;
         }
         #qrcode {
             display: flex;
             justify-content: center;
-            margin-top: 10px;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+        /* Custom styling for the download button */
+        .btn-download {
+            display: none; /* Hidden by default until text is entered */
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-download:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -43,24 +70,54 @@
 
 <div class="container">
     <h2>QR Code Generator</h2>
-    <input type="text" id="text-input" placeholder="Type text or paste URL here..." oninput="generateQR()">
+    <!-- Added maxlength attribute to hard-limit input data length -->
+    <input type="text" id="text-input" placeholder="Type text or paste URL here..." maxlength="400" oninput="generateQR()">
+    <div class="counter" id="char-counter">0 / 400 characters</div>
+    
     <div id="qrcode"></div>
+    
+    <!-- Action button to download the finalized image asset -->
+    <button id="download-btn" class="btn-download" onclick="downloadQR()">Download QR Code</button>
 </div>
 
 <script>
-    // Initialize the QR Code generator attached to the 'qrcode' div
     const qrcode = new QRCode(document.getElementById("qrcode"), {
         width: 200,
-        height: 200
+        height: 200,
+        correctLevel: QRCode.CorrectLevel.H // High error correction capability
     });
 
     function generateQR() {
-        const inputData = document.getElementById("text-input").value;
-        
+        const inputField = document.getElementById("text-input");
+        const counter = document.getElementById("char-counter");
+        const downloadBtn = document.getElementById("download-btn");
+        const inputData = inputField.value;
+
+        // Dynamic visual validation tracking character metrics
+        counter.innerText = `${inputData.length} / 400 characters`;
+
         if (inputData.trim() === "") {
-            qrcode.clear(); // Clear the QR code if input is empty
+            qrcode.clear(); 
+            downloadBtn.style.display = "none"; // Hide button if no text exists
         } else {
-            qrcode.makeCode(inputData); // Generate new QR code instantly
+            qrcode.makeCode(inputData); 
+            downloadBtn.style.display = "block"; // Reveal download button safely
+        }
+    }
+
+    function downloadQR() {
+        // Find the image element generated inside the #qrcode container
+        const qrImage = document.querySelector("#qrcode img");
+        
+        if (qrImage) {
+            const downloadLink = document.createElement("a");
+            downloadLink.href = qrImage.src;
+            downloadLink.download = "qrcode.png"; // Saves direct to desktop/downloads file pathway
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        } else {
+            alert("Please wait for the QR code to finish rendering before downloading.");
         }
     }
 </script>
